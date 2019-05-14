@@ -14,6 +14,7 @@ type imageSearchComponent struct {
 	imgur           *Imgur
 	searchInput     js.Value
 	resultContainer js.Value
+	textDiv         js.Value
 }
 
 func newImageSearchComponent(imgur *Imgur) *imageSearchComponent {
@@ -27,9 +28,12 @@ func (i *imageSearchComponent) init() {
 	_ = i.searchInput.Call("addEventListener", "input", wrapFunc(i.onSearchUpdate))
 
 	i.resultContainer = js.Global().Get("result")
+	i.textDiv = js.Global().Get("text")
 }
 
 func (i *imageSearchComponent) onSearchUpdate() {
+	i.setText("")
+
 	i.searchText = i.searchInput.Get("value").String()
 	fmt.Printf("updated search: %s\n", i.searchText)
 
@@ -38,6 +42,7 @@ func (i *imageSearchComponent) onSearchUpdate() {
 		return
 	}
 
+	i.setText("Searching...")
 	search := i.searchText
 	// wait a little in case the user is still typing
 	time.Sleep(500 * time.Millisecond)
@@ -51,10 +56,15 @@ func (i *imageSearchComponent) onSearchUpdate() {
 		fmt.Println(err)
 		return
 	}
+	i.setText("")
 	i.updateResults(imgs)
 }
 
 func (i *imageSearchComponent) updateResults(links []string) {
+	if len(links) == 0 {
+		i.setText("No results.")
+	}
+
 	var resValue []string
 	for _, l := range links {
 		resValue = append(resValue, fmt.Sprintf(`<div class="resimg"><a href="%s"><img src="%s" /></div></a>`, l, l))
@@ -65,6 +75,10 @@ func (i *imageSearchComponent) updateResults(links []string) {
 
 func (i *imageSearchComponent) resetResult() {
 	i.resultContainer.Set("innerHTML", "")
+}
+
+func (i *imageSearchComponent) setText(t string) {
+	i.textDiv.Set("innerHTML", t)
 }
 
 func wrapFunc(f func()) js.Func {
