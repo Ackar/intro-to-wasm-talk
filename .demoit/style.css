@@ -1,0 +1,147 @@
+/*
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Ranga:700|Roboto+Slab:700&display=swap');
+
+h1#main-title {
+    background-image: url("/images/bg.jpg");
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-shadow: .1em .1em .2em rgba(0, 0, 0, 0.6);
+}
+
+html, body, #top {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+
+    --color-text: #d4dade;
+    --color-main: rgb(66,133,244);
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: #072d45;
+}
+
+#top {
+    background-color: #072d45;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1 {
+    width: calc(100% - 6vw);
+    padding: 2vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    border-radius: 0 8px 8px 0;
+    text-transform: none;
+    font-weight: normal;
+    font-family: 'Roboto Slab';
+    color: white;
+}
+
+div.item {
+    font-size: 2em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 35px;
+}
+
+span.code {
+    background: #051d2d;
+    color: #bfc6cb;
+    font-family: 'courier';
+    padding: 10px;
+}
+
+
+h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 4vw;
+}
+
+h2:first-of-type {
+    margin-top: 10vw;
+}
+
+img {
+    height: 80%;
+    width: auto;
+}
+
+.logos {
+    width: 80%;
+    margin: 7vw auto;
+    text-align: center;
+}
+
+a, a:visited {
+    color: var(--color-main);
+	text-decoration: none;
+}
+
+split-view {
+    height: calc(100% - 13vw);
+    padding: 0 2vw;
+}
+
+em {
+    font-style: normal;
+    color: var(--color-main);
+}
+
+#progression {
+    position: absolute;
+    height: 6px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    border-radius: 0 3px 3px 0;
+    opacity: .4;
+}
+
+#qr {
+    position: absolute;
+    right: 1vw;
+    bottom: 1vw;
+    width: 15vw;
+    height: auto;
+}

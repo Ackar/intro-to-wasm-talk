@@ -18,17 +18,16 @@ type imageSearchComponent struct {
 }
 
 func newImageSearchComponent(imgur *Imgur) *imageSearchComponent {
-	return &imageSearchComponent{
-		imgur: imgur,
+	i := &imageSearchComponent{
+		imgur:           imgur,
+		searchInput:     js.Global().Get("search"),
+		resultContainer: js.Global().Get("result"),
+		textDiv:         js.Global().Get("text"),
 	}
-}
 
-func (i *imageSearchComponent) init() {
-	i.searchInput = js.Global().Get("search")
 	_ = i.searchInput.Call("addEventListener", "input", wrapFunc(i.onSearchUpdate))
 
-	i.resultContainer = js.Global().Get("result")
-	i.textDiv = js.Global().Get("text")
+	return i
 }
 
 func (i *imageSearchComponent) onSearchUpdate() {
@@ -92,8 +91,7 @@ func wrapFunc(f func()) js.Func {
 
 func main() {
 	imgur := NewImgur("79ae2f94f98a3c4")
-	is := newImageSearchComponent(imgur)
-	is.init()
+	_ = newImageSearchComponent(imgur)
 
 	select {}
 }
