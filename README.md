@@ -12,3 +12,11 @@ Material for the "Tour of Go and WASM" talk.
 docker-compose up
 ```
 And then go to http://localhost:8888
+
+## Resources
+
+- [go-wasm-obj-analyser](https://github.com/Ackar/go-wasm-obj-analyser) (binary size analyser)
+- [Wasmer](https://wasmer.io/)
+- [Wasmer Go library](https://github.com/wasmerio/go-ext-wasm)
+- [WebAssembly Binary Toolkit (WABT)](https://github.com/WebAssembly/wabt)
+- [Vugu](https://www.vugu.org/)
