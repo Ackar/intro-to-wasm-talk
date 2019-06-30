@@ -1,0 +1,16 @@
+version: "3"
+services:
+  examples:
+    image: nginx:stable-alpine
+    volumes:
+      - .:/usr/share/nginx/html
+    ports:
+      - 4242:80
+  demoit:
+    build: .
+    volumes:
+      - .:/pres
+    ports:
+      - 8888:8888
+      - 9999:9999
+

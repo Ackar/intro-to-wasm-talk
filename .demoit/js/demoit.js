@@ -17,7 +17,9 @@ limitations under the License.
 class BaseHTMLElement extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
+        this.attachShadow({
+            mode: 'open'
+        });
     }
 
     render() {
@@ -138,6 +140,7 @@ class SourceCode extends BaseHTMLElement {
     static get styles() {
         return `
         #container {
+            background: #202020;
             height: 100%;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -320,7 +323,9 @@ class WebBrowser extends BaseHTMLElement {
 
     async refreshFrame() {
         const url = this.$('#url').value;
-        const response = await fetch(`/ping?url=${url}`, { method: 'HEAD' });
+        const response = await fetch(`/ping?url=${url}`, {
+            method: 'HEAD'
+        });
 
         const status = response.status;
         if (status == this.previousStatus) {

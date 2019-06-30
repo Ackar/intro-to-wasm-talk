@@ -1,5 +1,31 @@
-<h1 id="main-title">A quick tour of Golang and WebAssembly</h1>
+<h1 id="main-title">A tour of Golang & WebAssembly</h1>
+<img src="/images/gopher.png" id="gopher" />
+---
+<h1>WASM</h1>
 
+<div class="item">Binary format for the web</div>
+<div class="item">Goals:
+    <ul>
+        <li>Small size, quick to parse</li>
+        <li>Native speed</li>
+        <li>Open</li>
+    </ul>
+</div>
+---
+<h1>Browser comptability</h1>
+<div class="item">Available in major browser since 2017</div>
+<div class="centered">
+    <img src="/images/wasm-browser-compat.png" style="width: 70%; height: auto;" />
+</div>
+---
+<h1>WAT is WASM</h1>
+
+<split-view>
+    <source-code folder="wat" files="add.wat" start-lines="0" end-lines="0">
+    </source-code>
+    <source-code folder="wat" files="index.html" start-lines="6" end-lines="9">
+    </source-code>
+</split-view>
 ---
 <h1>WASM + Golang</h1>
 <div class="item">Go 1.11+</div>
@@ -14,19 +40,37 @@
 <h1><span class="code">syscall/js</span></h1>
 <split-view>
     <div class="item">
-        <span class="code">js.Global()</span>
+        <span class="code">js.Global()</span><br /><br />
+        <span class="code">$(go env GOROOT)/misc/wasm/wasm_exec.js</span>
     </div>
     <web-browser src="https://golang.org/pkg/syscall/js/"></web-browser>
 </split-view>
+
 ---
-<h1>Example: photo search</h1>
+<h1>Hello WebAssembly!</h1>
+
+<split-view>
+    <source-code folder="hello" files="main.go" start-lines="0" end-lines="0">
+    </source-code>
+    <source-code folder="hello" files="index.html" start-lines="7" end-lines="13">
+    </source-code>
+</split-view>
+
+---
+<h1>Hello WebAssembly!</h1>
+<split-view>
+    <web-browser src="http://localhost:4242/hello/"></web-browser>
+</split-view>
+
+---
+<h1>Photo search</h1>
 <split-view>
     <!-- <web-term path="photo-search"></web-term> -->
-    <web-browser src="http://localhost:4242/"></web-browser>
+    <web-browser src="http://localhost:4242/photo-search/"></web-browser>
 </split-view>
 ---
 
-<h1>The code</h1>
+<h1>Photo search: the code</h1>
 <split-view>
     <source-code folder="photo-search" files="main.go" start-lines="23,36,72,76,80,28" end-lines="25,36,72,76,80,28">
     </source-code>
@@ -34,14 +78,28 @@
     </source-code>
 </split-view>
 ---
-<h1>The ugly</h1>
+
+<h1>The size...</h1>
 <div class="item">Uncompressed size: 8.3M</div>
 <div class="item">Compressed size: 1.9M</div>
+---
+<h1>Anatomy of a Go WASM binary<br />(Hello World binary)</h1>
+<div class="centered">
+    <div class="label">
+        <img src="images/wasm-sections-sizes.png" />
+        <span>Size by section</span>
+    </div>
+    <div class="label">
+        <img src="images/wasm-pkgs-sizes.png" />
+        <span>Size by package (code section)</span>
+    </div>
+</div>
+
 ---
 <h1>Tinygo</h1>
 <split-view>
     <web-term path="tinygo-timestamp"></web-term>
-    <web-browser src="http://localhost:4444/"></web-browser>
+    <web-browser src="http://localhost:4242/tinygo-timestamp/"></web-browser>
 </split-view>
 ---
 <h1>but...</h1>
@@ -50,8 +108,81 @@
 <div class="item">No reflection</div>
 <div class="item">-> So almost no standard lib</div>
 ---
-<h1>To go further...</h1>
+<h1>Performance: simple loop</h1>
+
+<split-view>
+    <source-code folder="benchmark/simple" files="main.go" start-lines="0" end-lines="0">
+    </source-code>
+    <table>
+        <tr>
+            <th>Format</th>
+            <th>Time</th>
+        </tr>
+        <tr>
+            <td>Javascript</td>
+            <td>10.8s</td>
+        </tr>
+        <tr>
+            <td>Go</td>
+            <td>2.8s</td>
+        </tr>
+        <tr>
+            <td>Go WASM</td>
+            <td>14.8s</td>
+        </tr>
+    </table>
+</split-view>
+---
+<h1>Performance: fibonacci</h1>
+
+<split-view>
+    <source-code folder="benchmark/fibonacci" files="fibonacci.go" start-lines="0" end-lines="0">
+    </source-code>
+    <table>
+        <tr>
+            <th>Format</th>
+            <th>Time</th>
+        </tr>
+        <tr>
+            <td>Javascript</td>
+            <td>8.7s</td>
+        </tr>
+        <tr>
+            <td>Go</td>
+            <td>7.3s</td>
+        </tr>
+        <tr>
+            <td>Go WASM</td>
+            <td>27.1s</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>7.6s</td>
+        </tr>
+        <tr>
+            <td>C WASM</td>
+            <td>11.2s</td>
+        </tr>
+    </table>
+</split-view>
+---
+<h1>The web is not the limit</h1>
+
+<div class="item">
+    "Universal binaries"
+</div>
+<div class="item">
+    Universal libraries?
+</div>
+
+---
+<h1>Resources</h1>
 
 <div>
-    <a href="#">github.com/Ackar/wasm-talk</a>
+    <ul>
+        <li><a href="#">wasmer.io</a></li>
+        <li><a href="#">www.vugu.org</a></li>
+        <li><a href="#">github.com/Ackar/wasm-talk</a></li>
+    </ul>
+
 </div>

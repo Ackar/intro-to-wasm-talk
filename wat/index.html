@@ -1,0 +1,16 @@
+<html>
+
+<head>
+
+    <script>
+        WebAssembly.instantiateStreaming(fetch('add.wasm'))
+            .then(obj => {
+                console.log(obj.instance.exports.add(1, 2));
+            });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
