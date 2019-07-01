@@ -15,6 +15,7 @@ And then go to http://localhost:8888
 
 ## Resources
 
+- [WebAssembly on the Go Wiki](https://github.com/golang/go/wiki/WebAssembly)
 - [go-wasm-obj-analyser](https://github.com/Ackar/go-wasm-obj-analyser) (binary size analyser)
 - [Wasmer](https://wasmer.io/)
 - [Wasmer Go library](https://github.com/wasmerio/go-ext-wasm)
