@@ -1,16 +1,11 @@
-<h1 id="main-title">A tour of Golang & WebAssembly</h1>
+<h1 id="main-title">Introduction to Golang & WebAssembly</h1>
 <img src="/images/gopher.png" id="gopher" />
 ---
 <h1>WASM</h1>
 
 <div class="item">Binary format for the web</div>
-<div class="item">Goals:
-    <ul>
-        <li>Small size, quick to parse</li>
-        <li>Native speed</li>
-        <li>Open</li>
-    </ul>
-</div>
+<div class="item">Small size, quick to parse</div>
+<div class="item">Native speed</div>
 ---
 <h1>Browser comptability</h1>
 <div class="item">Available in major browser since 2017</div>
@@ -106,7 +101,7 @@
 <div class="item">No maps</div>
 <div class="item">No concurrency</div>
 <div class="item">No reflection</div>
-<div class="item">-> So almost no standard lib</div>
+<div class="item">→ So almost no standard lib</div>
 ---
 <h1>Performance: simple loop</h1>
 
@@ -169,11 +164,19 @@
 <h1>The web is not the limit</h1>
 
 <div class="item">
-    "Universal binaries"
+    Universal binaries/libraries
 </div>
-<div class="item">
-    Universal libraries?
-</div>
+<split-view>
+    <source-code folder="wasmer" files="main.go" start-lines="0" end-lines="0">
+    </source-code>
+</split-view>
+
+---
+<h1>Use cases</h1>
+
+<div class="item">Reusing existing code</div>
+<div class="item">Faster web-apps (maybe?)</div>
+<div class="item">You really don't want to write JS</div>
 
 ---
 <h1>Resources</h1>
@@ -187,3 +190,8 @@
     </ul>
 
 </div>
+---
+<h1></h1>
+<split-view>
+    <web-term path="tinygo-timestamp"></web-term>
+</split-view>
