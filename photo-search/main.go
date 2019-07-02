@@ -25,7 +25,8 @@ func newImageSearchComponent(imgur *Imgur) *imageSearchComponent {
 		textDiv:         js.Global().Get("text"),
 	}
 
-	_ = i.searchInput.Call("addEventListener", "input", wrapFunc(i.onSearchUpdate))
+	_ = i.searchInput.Call("addEventListener", "input",
+		wrapFunc(i.onSearchUpdate))
 
 	return i
 }
@@ -66,7 +67,10 @@ func (i *imageSearchComponent) updateResults(links []string) {
 
 	var resValue []string
 	for _, l := range links {
-		resValue = append(resValue, fmt.Sprintf(`<div class="resimg"><a href="%s"><img src="%s" /></div></a>`, l, l))
+		resValue = append(resValue, fmt.Sprintf(`
+		<div class="resimg">
+			<a href="%s"><img src="%s" /></a>
+		</div>`, l, l))
 	}
 	v := strings.Join(resValue, "\n")
 	i.resultContainer.Set("innerHTML", v)
@@ -82,8 +86,8 @@ func (i *imageSearchComponent) setText(t string) {
 
 func wrapFunc(f func()) js.Func {
 	return js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		// start in a goroutine so that we can call blocking code (http request,
-		// sleep...) inside the func
+		// start in a goroutine so that we can call blocking code
+		//(http request, sleep...) inside the func
 		go f()
 		return nil
 	})
